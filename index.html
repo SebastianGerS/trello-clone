@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" >
+  <link rel="stylesheet" href="styles.css" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <title>Laboration 1: JQuery UI & Bootstrap 4</title>
+</head>
+<body>
+  <article class="columns">
+    <div>
+    <section class="card column">
+      <span class="oi oi-plus" name="plus" aria-hidden="true"></span>
+      <h2>Todo</h2>
+      <div class="column-card card ui-sortable">
+        <div class="task ui-sortable-handle">
+          <h3 >Task</h3>
+        </div>
+        <div class="hidden content">
+          <div class="main-content">
+              <h4>Description</h4>
+              <p class="hidden">This card contains some info</p>
+          </div>
+          <div class="asigned">
+              <h4>Assignee</h4>
+              <p class="hidden">This card is asigned to</p>
+          </div>
+          <div class="deadline">
+              <h4>Deadline</h4>
+              <p class="hidden">This card has some deadline</p>
+          </div>
+        </div>
+      </div>  
+    </section>
+  </div>
+  <div>
+    <section class="card column">
+      <span class="oi oi-plus" name="plus" aria-hidden="true"></span>
+      <h2>Doing</h2>
+    </section>
+  </div>
+  <div >
+    <section class="card column">
+      <span class="oi oi-plus" name="plus" aria-hidden="true"></span>
+      <h2>Done</h2>
+    </section>
+  </div>
+
+  </article>
+  <script src="app.js"></script>
+</body>
+</html>

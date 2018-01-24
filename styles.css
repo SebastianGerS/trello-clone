@@ -1,0 +1,62 @@
+body {
+  background-color: lightskyblue;
+  min-height: 100vh;
+}
+
+.columns {
+
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.card {
+
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin:1em;
+  min-width: 300px;
+  min-height:200px;
+  height: auto;
+
+}
+
+.column span {
+
+  align-self: flex-end;
+  margin:0.75em;
+}
+
+.column div {
+
+  margin: 1em;
+ 
+}
+.column-card div:first-child {
+    
+    align-self: center;
+  }
+
+.column div h3 {
+
+  text-align: center;
+  
+}
+
+.hidden {
+  display: none;
+}
+
+.card.column-card {
+
+  min-width:267px;
+  min-height:0;
+  align-items: flex-start;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
