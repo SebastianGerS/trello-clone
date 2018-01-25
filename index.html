@@ -12,52 +12,70 @@
   <title>Laboration 1: JQuery UI & Bootstrap 4</title>
 </head>
 <body>
-  <article class="columns">
+  <main>
+    <acticle class="main-header">
+        <section>
+            <h1>Trello-Clone</h1>
+          </section>
+      <section class="column-creation">
+        <h2>Create more columns?</h2>
+      </section>
+    </acticle>
+    <article class="columns">
+      <div>
+      <section class="card column">
+        <div class="column-icons">
+          <span class="oi oi-trash" name="trash" aria-hidden="true"></span>
+          <span class="oi oi-plus" name="plus" aria-hidden="true"></span>
+        </div>
+        <h2 class="column-heading ui-sortable-handle">Todo</h2>
+        <div class="column-card card ui-sortable">
+          <span class="oi oi-trash"></span>
+          <div class="task ui-sortable-handle">
+            <h3 >Task</h3>
+          </div>
+          <div class="hidden content">
+            <ul class="nav nav-pills mb-3">
+                <li class="nav-item"><a class="nav-link active" href="#description">Description</a></li>
+                <li class="nav-item"><a class="nav-link" href="#assignee">Assignee</a></li>
+                <li class="nav-item"><a class="nav-link" href="#deadline">Deadline</a></li>
+            </ul>
+            <div id="description">
+                <h4>Description</h4>
+                <p class="hidden">This card contains some info</p>
+            </div>
+            <div id="assignee">
+                <h4>Assignee</h4>
+                <p class="hidden">This card is asigned to</p>
+            </div>
+            <div id="deadline">
+                <h4>Deadline</h4> 
+                <p class="hidden">This card has some deadline</p>
+            </div>
+          </div>
+        </div>  
+      </section>
+    </div>
     <div>
-    <section class="card column">
-      <span class="oi oi-plus" name="plus" aria-hidden="true"></span>
-      <h2>Todo</h2>
-      <div class="column-card card ui-sortable">
-        <span class="oi oi-trash"></span>
-        <div class="task ui-sortable-handle">
-          <h3 >Task</h3>
+      <section class="card column">
+          <div class="column-icons">
+              <span class="oi oi-trash" name="trash" aria-hidden="true"></span>
+              <span class="oi oi-plus" name="plus" aria-hidden="true"></span>
+          </div>
+        <h2 class="column-heading ui-sortable-handle">Doing</h2>
+      </section>
+    </div>
+    <div >
+      <section class="card column">
+        <div class="column-icons">
+          <span class="oi oi-trash" name="trash" aria-hidden="true"></span>
+          <span class="oi oi-plus" name="plus" aria-hidden="true"></span>
         </div>
-        <div class="hidden content">
-          <ul class="nav nav-pills mb-3">
-              <li class="nav-item"><a class="nav-link active" href="#description">Description</a></li>
-              <li class="nav-item"><a class="nav-link" href="#assignee">Assignee</a></li>
-              <li class="nav-item"><a class="nav-link" href="#deadline">Deadline</a></li>
-          </ul>
-          <div id="description">
-              <h4>Description</h4>
-              <p class="hidden">This card contains some info</p>
-          </div>
-          <div id="assignee">
-              <h4>Assignee</h4>
-              <p class="hidden">This card is asigned to</p>
-          </div>
-          <div id="deadline">
-              <h4>Deadline</h4> 
-              <p class="hidden">This card has some deadline</p>
-          </div>
-        </div>
-      </div>  
-    </section>
-  </div>
-  <div>
-    <section class="card column">
-      <span class="oi oi-plus" name="plus" aria-hidden="true"></span>
-      <h2>Doing</h2>
-    </section>
-  </div>
-  <div >
-    <section class="card column">
-      <span class="oi oi-plus" name="plus" aria-hidden="true"></span>
-      <h2>Done</h2>
-    </section>
-  </div>
-
-  </article>
+        <h2 class="column-heading ui-sortable-handle">Done</h2>
+      </section>
+    </div>
+    </article>
+  </main>
   <script src="app.js"></script>
 </body>
 </html>
