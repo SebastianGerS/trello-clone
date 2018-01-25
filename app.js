@@ -1,5 +1,20 @@
 $(document).ready(function() {
 
+  function enableColumnSorting() {
+    $('.columns').sortable({
+    receive: function( event, ui ) {},
+    cursor: "move",
+    connectWith: ".columns",
+    handle: ".column-heading",
+    helper: "clone",
+    placeholder: "ui-sortable-placeholder",
+    opacity: 0.5,
+    items: ".column"
+   
+  });
+  }
+  enableColumnSorting();
+
   function enableCardSorting() {
     $('.column').sortable({
     receive: function( event, ui ) {},
@@ -14,6 +29,38 @@ $(document).ready(function() {
   });
   }
   enableCardSorting();
+
+  $('.column-creation').on('click','h2', function() {
+
+    let form = `
+      <form>
+        <input name="column" class="form-control" placeholder="name"/>  
+        <button id="createColumn" class="btn" type="submit">Create</button>
+      </form>`;
+
+    $(this).closest('.column-creation').append(form);
+    $(this).remove();
+  });
+
+  $('.column-creation').on('click','#createColumn', function (e) {
+    e.preventDefault();
+    let section = $(this).closest('.column-creation');
+    let columnName = section.find('input[name="column"]').val();
+    let column =`
+      <div>
+        <section class="card column">
+            <div class="column-icons">
+                <span class="oi oi-trash" name="trash" aria-hidden="true"></span>
+                <span class="oi oi-plus" name="plus" aria-hidden="true"></span>
+            </div>
+          <h2 class="column-heading ui-sortable-handle">${columnName}</h2>
+        </section>
+      </div>`;
+      
+    $('body').find('.columns').append(column);
+    section.append('<h2>Create more columns?</h2>');
+    section.find('form').remove();
+  });
 
   $('.column').on('click','.column-card h3' ,function() {
     let cardContent = $(this).closest('.column-card').find('.content');
@@ -32,14 +79,48 @@ $(document).ready(function() {
   });
 
   $('body').on('click', '.oi-trash', function () {
-    $(this).closest('.column-card').hide("explode", 1000).remove();
+    if($(this).closest('.column-card').length) {
+      $(this).closest('.column-card').hide("explode", 1000).remove();
+    } else {
+      $(this).closest('.column').hide("explode", 1000).remove();
+    }
+    
   });
 
-  $('.oi-plus').on('click', function () {
+  $('.columns').on('click', '.oi-plus', function () {
+    
+    let column = $(this).closest('.column');
 
-    let column = $(this).closest('.column');    
-    column.append('<form><input name="task" class="input" placeholder="Task"/><input class="input" name="assignee" placeholder="Assignee"/> <input name="date" class="input" placeholder="Date"/>  <button id="createTask" class="btn" type="submit">Create</button></form>');
+    if (!column.find("form").length)  {
+
+      let form = `
+      <form>
+        <input name="task" class="form-control" placeholder="Task"/>
+        <input class="form-control" name="assignee" placeholder="Assignee"/>
+        <input name="date" class="form-control" placeholder="Date"/>
+        <button id="createTask" class="btn" type="submit">Create</button>
+      </form>`;
+
+      column.append(form);
+      column.find('form').hide();
+    }
+    
+    column.find('form').show({ effect: "scale", direction: "horizontal" });
     column.find('input[name="date"]').datepicker();
+
+    $(this).removeClass('oi-plus').addClass('oi-minus');
+
+
+  });
+
+  
+  $('.columns').on('click', '.oi-minus', function () {
+    
+    let column = $(this).closest('.column'); 
+    
+    column.find('form').hide({ effect: "scale", direction: "horizontal" });
+
+    $(this).removeClass('oi-minus').addClass('oi-plus');
   });
 
   $('body').on('click', "#createTask" ,function(e) {
@@ -74,10 +155,12 @@ $(document).ready(function() {
         </div>
       </div>`;
 
-    column.append(card);
+    column.append(card).show({ effect: "scale"});
     
     $(this).closest('form').remove();
     enableCardSorting();
+ 
+    column.find('.oi-minus').removeClass('oi-minus').addClass('oi-plus');
   });
 
 
