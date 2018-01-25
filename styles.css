@@ -22,7 +22,17 @@ body {
   height: auto;
 
 }
+#ui-datepicker-div {
+  background-color: mintcream;
+  padding:1em;
+  border-radius: 5%;
+  box-shadow: 6px 5px 5px black;
 
+}
+.ui-dialog {
+  background-color: mintcream;
+  padding:1em
+}
 .column span {
 
   align-self: flex-end;
@@ -31,8 +41,16 @@ body {
 
 .column div {
 
-  margin: 1em;
- 
+  margin: 0 1em 1em 1em;
+}
+
+.task {
+  align-self: center;;
+
+}
+
+.task span {
+  align-self: flex-end
 }
 .column-card div:first-child {
     
