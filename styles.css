@@ -1,8 +1,23 @@
 body {
   background-color: lightskyblue;
   min-height: 100vh;
+  width: 3000px;
 }
+main {
+  display: inline-block;
+}
+.main-header {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+.main-header section {
+  padding: 2em;
+}
+.column-creation {
+  padding:2em;
 
+}
 .columns {
 
   display: flex;
@@ -18,7 +33,7 @@ body {
   align-items: center;
   margin:1em;
   min-width: 300px;
-  min-height:200px;
+  min-height:220px;
   height: auto;
 
 }
@@ -33,9 +48,8 @@ body {
   background-color: mintcream;
   padding:1em
 }
-.column span {
+.column .column-icons span {
 
-  align-self: flex-end;
   margin:0.75em;
 }
 
@@ -44,23 +58,35 @@ body {
   margin: 0 1em 1em 1em;
 }
 
+.column-icons {
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .task {
   align-self: center;;
 
 }
 
-.task span {
+.task .oi-trash span {
   align-self: flex-end
 }
+
 .column-card div:first-child {
     
     align-self: center;
   }
 
+.column-card span {
+  margin:0.75em;
+  align-self: flex-end;
+}
+
 .column div h3 {
 
   text-align: center;
-  
 }
 
 .hidden {
