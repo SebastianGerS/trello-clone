@@ -2,12 +2,14 @@ $(document).ready(function() {
 
   function enableCardSorting() {
     $('.column').sortable({
+    receive: function( event, ui ) {},
     cursor: "move",
-    connectWith: ".column-card",
+    connectWith: ".column",
     handle: ".task",
     helper: "clone",
     placeholder: "ui-sortable-placeholder",
-    opacity: 0.5
+    opacity: 0.5,
+    items: ".column-card"
    
   });
   }
