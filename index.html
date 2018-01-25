@@ -18,20 +18,26 @@
       <span class="oi oi-plus" name="plus" aria-hidden="true"></span>
       <h2>Todo</h2>
       <div class="column-card card ui-sortable">
+        <span class="oi oi-trash"></span>
         <div class="task ui-sortable-handle">
           <h3 >Task</h3>
         </div>
         <div class="hidden content">
-          <div class="main-content">
+          <ul class="nav nav-pills mb-3">
+              <li class="nav-item"><a class="nav-link active" href="#description">Description</a></li>
+              <li class="nav-item"><a class="nav-link" href="#assignee">Assignee</a></li>
+              <li class="nav-item"><a class="nav-link" href="#deadline">Deadline</a></li>
+          </ul>
+          <div id="description">
               <h4>Description</h4>
               <p class="hidden">This card contains some info</p>
           </div>
-          <div class="asigned">
+          <div id="assignee">
               <h4>Assignee</h4>
               <p class="hidden">This card is asigned to</p>
           </div>
-          <div class="deadline">
-              <h4>Deadline</h4>
+          <div id="deadline">
+              <h4>Deadline</h4> 
               <p class="hidden">This card has some deadline</p>
           </div>
         </div>
