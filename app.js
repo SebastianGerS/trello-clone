@@ -1,34 +1,61 @@
 $(document).ready(function() {
 
-  function enableColumnSorting() {
-    $('.columns').sortable({
-    receive: function( event, ui ) {},
-    cursor: "move",
-    connectWith: ".columns",
-    handle: ".column-heading",
-    helper: "clone",
-    placeholder: "ui-sortable-placeholder",
-    opacity: 0.5,
-    items: ".column"
-   
-  });
-  }
-  enableColumnSorting();
+  $.widget("misc.enableSorting", {
 
-  function enableCardSorting() {
-    $('.column').sortable({
-    receive: function( event, ui ) {},
-    cursor: "move",
-    connectWith: ".column",
-    handle: ".task",
-    helper: "clone",
-    placeholder: "ui-sortable-placeholder",
-    opacity: 0.5,
-    items: ".column-card"
-   
+    options: {
+      cursor: "move",
+      target: null,
+      handle: null,
+      helper: "clone",
+      placeholder: "ui-sortable-placeholder",
+      opacity: 0.5,
+      sortbale: null
+    },
+
+    _create: function (){
+     
+    },
+
+    _setOption: function (key ,value) {
+      this.options[key] = value;
+    },
+
+    _update: function (){
+      
+    },
+
+    _destroy: function (target) {
+      $(target).sortable('destroy');
+    },
+
+    makeSortable: function (target, handle, sortable) {
+      
+      let self = this;
+      
+      this._setOption("target", target);
+      this._setOption("handle", handle);
+      this._setOption("sortable", sortable);
+      
+
+      $(target).sortable({
+        cursor: self.options.cursor,
+        connectWith: self.options.target,
+        handle: self.options.handle,
+        helper: self.options.helper,
+        placeholder: self.options.placeholder,
+        opacity: self.options.opacity,
+        items: self.options.sortable,
+      });
+        
+    } // sets the options with data providede when function is caled and creates a new sortable whith thoes options.
+
   });
-  }
-  enableCardSorting();
+
+  $('.columns').enableSorting();
+  $('.columns').enableSorting("makeSortable",'.columns', '.column-heading', '.column');
+  $('.column').enableSorting();
+  $('.column').enableSorting("makeSortable",'.column', '.task', '.column-card');
+  //--initialising the widget and using the make sortable method to create sortables --
 
   $('.column-creation').on('click','h2', function() {
 
@@ -40,12 +67,15 @@ $(document).ready(function() {
 
     $(this).closest('.column-creation').append(form);
     $(this).remove();
-  });
+
+  }); //setts on click listener that apends a form and removes the clicked heading when clicked
 
   $('.column-creation').on('click','#createColumn', function (e) {
+
     e.preventDefault();
     let section = $(this).closest('.column-creation');
     let columnName = section.find('input[name="column"]').val();
+
     let column =`
       <div>
         <section class="card column">
@@ -60,32 +90,40 @@ $(document).ready(function() {
     $('body').find('.columns').append(column);
     section.append('<h2>Create more columns?</h2>');
     section.find('form').remove();
-  });
+
+  }); // creates a new column from the user specified name
 
   $('.column').on('click','.column-card h3' ,function() {
+
     let cardContent = $(this).closest('.column-card').find('.content');
     cardContent.show();
     cardContent.tabs();
+
     cardContent.dialog({minWidth: 350, close: function(event, ui) {
       cardContent.tabs("destroy");
       cardContent.dialog("destroy");
       cardContent.hide();
     }});
 
-  });
+    cardContent.closest('.ui-dialog').find('button').addClass('btn');
+
+  }); //creates a dialog whith the content from the clicked card
 
   $('body').on('click', '.ui-dialog h4', function () {
+
     $(this).next().toggle();
-  });
+  }); // reveals the information related to the heading on the card
 
   $('body').on('click', '.oi-trash', function () {
+
     if($(this).closest('.column-card').length) {
       $(this).closest('.column-card').hide("explode", 1000).remove();
     } else {
       $(this).closest('.column').hide("explode", 1000).remove();
-    }
+    } 
     
-  });
+  }); /* checkes if there are any parents to the icon that have the .column-card class, 
+  if so destroy selects and destroys the closest one if not destroy de closest column*/
 
   $('.columns').on('click', '.oi-plus', function () {
     
@@ -103,25 +141,24 @@ $(document).ready(function() {
 
       column.append(form);
       column.find('form').hide();
-    }
+    } // if there is no previusly created form then create one
     
-    column.find('form').show({ effect: "scale", direction: "horizontal" });
+    column.find('form').show({ effect: "scale"});
     column.find('input[name="date"]').datepicker();
 
     $(this).removeClass('oi-plus').addClass('oi-minus');
 
 
-  });
+  }); // shows the form for creating new cards changes from plus-icon to minus
 
   
   $('.columns').on('click', '.oi-minus', function () {
     
     let column = $(this).closest('.column'); 
-    
-    column.find('form').hide({ effect: "scale", direction: "horizontal" });
-
+    column.find('form').hide({ effect: "scale"});
     $(this).removeClass('oi-minus').addClass('oi-plus');
-  });
+
+  }); // hides form for creating new cards and resets minus-icon to plus
 
   $('body').on('click', "#createTask" ,function(e) {
     e.preventDefault();
@@ -158,10 +195,9 @@ $(document).ready(function() {
     column.append(card).show({ effect: "scale"});
     
     $(this).closest('form').remove();
-    enableCardSorting();
  
     column.find('.oi-minus').removeClass('oi-minus').addClass('oi-plus');
-  });
+  }); // creates new card and hides form and resets minus-icon to plus
 
 
 });
