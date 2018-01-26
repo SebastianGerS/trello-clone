@@ -38,6 +38,7 @@ main {
 
 }
 #ui-datepicker-div {
+  display: none;
   background-color: mintcream;
   padding:1em;
   border-radius: 5%;
@@ -47,6 +48,9 @@ main {
 .ui-dialog {
   background-color: mintcream;
   padding:1em
+}
+.ui-dialog button {
+  margin-bottom: 1em;
 }
 .column .column-icons span {
 
