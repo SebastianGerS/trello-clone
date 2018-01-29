@@ -90,26 +90,34 @@ $(document).ready(function() {
     $('body').find('.columns').append(column);
     $('.column').enableSorting();
     $('.column').enableSorting("makeSortable",'.column', '.task', '.column-card');
+    createOnClickDialog();
     section.append('<h2>Create more columns?</h2>');
     section.find('form').remove();
 
   }); // creates a new column from the user specified name
 
-  $('.column').on('click','.column-card h3' ,function() {
+  const createOnClickDialog = () => {
 
-    let cardContent = $(this).closest('.column-card').find('.content');
-    cardContent.show();
-    cardContent.tabs();
+    $('.column').on('click','.column-card h3' , function() {
 
-    cardContent.dialog({minWidth: 350, close: function(event, ui) {
-      cardContent.tabs("destroy");
-      cardContent.dialog("destroy");
-      cardContent.hide();
-    }});
+      let cardContent = $(this).closest('.column-card').find('.content');
+      cardContent.show();
+      cardContent.tabs();
 
-    cardContent.closest('.ui-dialog').find('button').addClass('btn');
+      cardContent.dialog({minWidth: 350, close: function(event, ui) {
+        cardContent.tabs("destroy");
+        cardContent.dialog("destroy");
+        cardContent.hide();
+      }});
 
-  }); //creates a dialog whith the content from the clicked card
+      cardContent.closest('.ui-dialog').find('button').addClass('btn');
+
+    });
+
+  }; //creates a dialog whith the content from the clicked card
+
+  createOnClickDialog();
+  
 
   $('body').on('click', '.ui-dialog h4', function () {
 
