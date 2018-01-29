@@ -124,6 +124,18 @@ $(document).ready(function() {
     $(this).next().toggle();
   }); // reveals the information related to the heading on the card
 
+  
+  $('body').on('click', '.ui-dialog .nav-item', function () {
+
+    let navItems = $(this).closest('.nav').children();
+    
+    navItems.each(function () {
+      $(this).find('a').removeClass('active');
+    });
+
+    $(this).find('a').addClass('active');
+  }); // toggles the active class to corect element when using tabs
+
   $('body').on('click', '.oi-trash', function () {
 
     if($(this).closest('.column-card').length) {
