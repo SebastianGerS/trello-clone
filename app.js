@@ -88,6 +88,8 @@ $(document).ready(function() {
       </div>`;
       
     $('body').find('.columns').append(column);
+    $('.column').enableSorting();
+    $('.column').enableSorting("makeSortable",'.column', '.task', '.column-card');
     section.append('<h2>Create more columns?</h2>');
     section.find('form').remove();
 
