@@ -52,9 +52,9 @@ $(document).ready(function() {
   });
 
   $('.columns').enableSorting();
-  $('.columns').enableSorting("makeSortable",'.columns', '.column-heading', '.column');
+  $('.columns').enableSorting("makeSortable",'.columns', '.column-handle', '.column');
   $('.column').enableSorting();
-  $('.column').enableSorting("makeSortable",'.column', '.task', '.column-card');
+  $('.column').enableSorting("makeSortable",'.column', '.ui-sortable-handle', '.column-card');
   //--initialising the widget and using the make sortable method to create sortables --
 
   $('.column-creation').on('click','h2', function() {
@@ -75,21 +75,26 @@ $(document).ready(function() {
     e.preventDefault();
     let section = $(this).closest('.column-creation');
     let columnName = section.find('input[name="column"]').val();
-
+    let cards = $('.ui-sortable-handle'); // all cards are selected
+  
     let column =`
       <div>
         <section class="card column">
+          <div class="column-handle">
             <div class="column-icons">
                 <span class="oi oi-trash" name="trash" aria-hidden="true"></span>
                 <span class="oi oi-plus" name="plus" aria-hidden="true"></span>
             </div>
-          <h2 class="column-heading ui-sortable-handle">${columnName}</h2>
+            <h2 class="column-heading">${columnName}</h2>
+          </div>
         </section>
       </div>`;
       
     $('body').find('.columns').append(column);
     $('.column').enableSorting();
-    $('.column').enableSorting("makeSortable",'.column', '.task', '.column-card');
+    
+    $('.column').enableSorting("makeSortable",'.column', '.ui-sortable-handle', '.column-card');
+    cards.addClass("ui-sortable-handle"); //when sorting is reenabled for all the columns the ui-sortable-handle is removed from all cards so they have to be added agin
     createOnClickDialog();
     section.append('<h2>Create more columns?</h2>');
     section.find('form').remove();
@@ -190,28 +195,30 @@ $(document).ready(function() {
     let column = $(this).closest('.column');
     let card = `
     <div class="column-card card ui-sortable">
-      <span class="oi oi-trash"></span>
-      <div class="task ui-sortable-handle">    
-        <h3>${task}</h3>
-      </div>
-      <div class="hidden content">
-        <ul class="nav nav-pills mb-3">
-          <li class="nav-item"><a class="nav-link active" href="#description">Description</a></li>
-          <li class="nav-item"><a class="nav-link" href="#assignee">Assignee</a></li>
-          <li class="nav-item"><a class="nav-link" href="#deadline">Deadline</a></li>
-        </ul>
-        <div id="description">
-            <h4>Description</h4>
-            <p class="hidden">${task}</p>
+      <div class="ui-sortable-handle">
+        <span class="oi oi-trash"></span>
+        <div class="task">    
+          <h3>${task}</h3>
         </div>
-        <div id="assignee">
-            <h4>Assignee</h4>
-            <p class="hidden">${assignee}</p>
-        </div>
-        <div id="deadline">
-            <h4>Deadline</h4> 
-            <p class="hidden">${date}</p>
-        </div>
+        <div class="hidden content">
+          <ul class="nav nav-pills mb-3">
+            <li class="nav-item"><a class="nav-link active" href="#description">Description</a></li>
+            <li class="nav-item"><a class="nav-link" href="#assignee">Assignee</a></li>
+            <li class="nav-item"><a class="nav-link" href="#deadline">Deadline</a></li>
+          </ul>
+          <div id="description">
+              <h4>Description</h4>
+              <p class="hidden">${task}</p>
+          </div>
+          <div id="assignee">
+              <h4>Assignee</h4>
+              <p class="hidden">${assignee}</p>
+          </div>
+          <div id="deadline">
+              <h4>Deadline</h4> 
+              <p class="hidden">${date}</p>
+          </div>
+        </div>  
       </div>`;
 
     column.append(card).show({ effect: "scale"});
