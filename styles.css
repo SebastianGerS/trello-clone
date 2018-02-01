@@ -57,16 +57,12 @@ main {
   margin:0.75em;
 }
 
-.column div {
-
-  margin: 0 1em 1em 1em;
-}
-
 .column-icons {
   width: 100%;
   display:flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0;
 }
 
 .task {
@@ -102,6 +98,18 @@ main {
   min-width:267px;
   min-height:0;
   align-items: flex-start;
+}
+
+.ui-sortable-handle {
+  width:100%;
+}
+
+.column-handle {
+  width:100%;
+}
+
+.column-heading {
+  text-align: center;
 }
 
 form {
