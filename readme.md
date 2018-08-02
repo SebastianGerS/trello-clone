@@ -1,1 +1,1 @@
-# Project found here: http://lab1.sebastiangerstelsollerman.chas.academy/
+# Project deployed at: http://trello-clone.sebastiangerstelsollerman.me
