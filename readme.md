@@ -1,1 +1,1 @@
-# Project deployed at: http://trello-clone.sebastiangerstelsollerman.me
+# Project deployed at: http://www.trello-clone.sebastiangerstelsollerman.me
